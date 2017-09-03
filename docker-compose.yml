@@ -1,0 +1,9 @@
+# UMR ENTROPIE WEBSITE
+bdmerdb:
+  hostname: dbmerdb
+  image: couchdb
+  volumes:
+    - ./couchdbdb_data/data:/usr/local/var/lib/couchdb
+    - ./couchdbdb_data/config/local.d:/usr/local/etc/couchdb/local.d
+  ports:
+    - "5984:5984"
