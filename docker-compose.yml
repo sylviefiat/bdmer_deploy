@@ -1,7 +1,8 @@
 # UMR ENTROPIE WEBSITE
 bdmerdb:
   hostname: dbmerdb
-  image: couchdb
+#  image: couchdb
+  image: docker-couch_jwt_auth
   volumes:
     - ./couchdbdb_data/data:/usr/local/var/lib/couchdb
     - ./couchdbdb_data/config/local.d:/usr/local/etc/couchdb/local.d
