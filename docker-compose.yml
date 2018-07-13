@@ -1,10 +1,32 @@
-# UMR ENTROPIE WEBSITE
-bdmerdb:
-  hostname: dbmerdb
-  image: couchdb:latest
-#  image: docker-couch_jwt_auth
-  volumes:
-    - ./couchdbdb_data/data:/usr/local/var/lib/couchdb
-    - ./couchdbdb_data/config/local.d:/usr/local/etc/couchdb/local.d
-  ports:
-    - "5984:5984"
+version: '2'
+
+services:
+
+  bdmer3db:
+    hostname: bdmer3db 
+    image: couchdb:latest
+    volumes:
+      - ./bdmer3db_data/data:/usr/local/var/lib/couchdb
+      - ./bdmer3db_data/config/local.d:/usr/local/etc/couchdb/local.d
+    ports:
+      - "5984:5984"
+    networks:
+      - bdmer3-network
+
+  bdmer3:
+    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/angular-seed.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    container_name: bdmer3
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    image: sylviefiat/bdmer3
+    networks:
+      - dbmer-network
+    ports:
+      - '5555:5555'
+    volumes:
+      - ./bdmer3_data/app-config.json:/var/www/dist/prod/assets/app-config.json
+
+networks:
+  bdmer3-network:
+    driver: bridge
