@@ -24,7 +24,8 @@
 
 ` vi bdmer.service`
 
-`[Unit]
+```
+[Unit]
 Description=bdmer
 Requires=docker.service
 After=docker.service
@@ -37,7 +38,7 @@ ExecStop=/usr/local/bin/docker-compose -f /opt/docker/bdmer_deploy/docker-compos
 
 [Install]
 WantedBy=multi-user.target
-`
+```
 
 3. enable on start
 
