@@ -1,4 +1,4 @@
-# Docker project used to deploy BDMER3 with nginx and couchdb
+# Docker project used to deploy BDMER3 with nginx and couchdb  => projet déplacé gitlab in2p3 30/102019
 
 #### Required: ####
   - docker
